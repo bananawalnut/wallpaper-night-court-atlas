@@ -6,6 +6,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "verify": "node scripts/verify.mjs",
-    "release": "npm run build && npm run verify"
+    "release": "npm run build && npm run verify",
+    "publish:staging": "node scripts/publish.mjs --channel staging",
+    "publish:production": "node scripts/publish.mjs --channel production"
   }
 }

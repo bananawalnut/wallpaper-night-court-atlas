@@ -2,11 +2,22 @@ name: Build publisher bundle
 
 on:
   workflow_dispatch:
+    inputs:
+      publish_channel:
+        description: Build only or publish through the Zenith admin API
+        required: true
+        default: build-only
+        type: choice
+        options:
+          - build-only
+          - staging
+          - production
   push:
     tags: ["v*"]
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   bundle:
@@ -26,4 +37,8 @@ jobs:
             dist/preview.*
             dist/release-summary.json
           if-no-files-found: error
-
+      - name: Publish signed release
+        if: github.event_name == 'workflow_dispatch' && inputs.publish_channel != 'build-only'
+        run: node scripts/publish.mjs --channel "${{ inputs.publish_channel }}"
+        env:
+          ZENITH_PUBLISH_ORIGIN: https://zenith-research.ca

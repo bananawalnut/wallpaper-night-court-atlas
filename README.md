@@ -20,3 +20,7 @@ The command creates `dist/publication.json`, `dist/pack.zip`, `dist/preview.avif
 
 The native action surface exposes Loggia, Sidra, arrival replay, and stillness. Reduced-motion
 preferences disable establishing movement, parallax, flicker, and Starfall.
+
+For programmatic publishing, manually run the `Build publisher bundle` workflow and choose
+`staging` or `production`. GitHub OIDC provides a short-lived repository identity; this repo stores
+no Supabase password, registry signing key, or long-lived publisher token.
