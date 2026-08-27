@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://zenith-research.ca/wallpapers/v1/publication.schema.json",
+  "title": "blank-canvas Wallpaper Publication Input v1",
+  "type": "object",
+  "required": ["schemaVersion", "id", "version", "releasedAt", "title", "summary", "entry", "runtime", "requirements", "actions", "motion"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$", "maxLength": 80 },
+    "version": { "$ref": "#/$defs/semanticVersion" },
+    "releasedAt": { "type": "string", "format": "date-time" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "summary": { "type": "string", "minLength": 1, "maxLength": 360 },
+    "entry": { "$ref": "#/$defs/relativePath" },
+    "featured": { "type": "boolean" },
+    "sourceRepository": { "type": "string", "format": "uri", "pattern": "^https://" },
+    "runtime": {
+      "type": "object",
+      "required": ["api", "minimumVersion", "maximumExclusiveVersion"],
+      "properties": {
+        "api": { "const": "zenith-wallpaper-host" },
+        "minimumVersion": { "$ref": "#/$defs/semanticVersion" },
+        "maximumExclusiveVersion": { "$ref": "#/$defs/semanticVersion" }
+      }
+    },
+    "requirements": {
+      "type": "object",
+      "required": ["webgl2", "wasm", "minimumMacOS"],
+      "properties": {
+        "webgl2": { "type": "boolean" },
+        "wasm": { "type": "boolean" },
+        "minimumMacOS": { "$ref": "#/$defs/semanticVersion" }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "symbol"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$", "maxLength": 80 },
+          "title": { "type": "string", "minLength": 1, "maxLength": 60 },
+          "symbol": { "type": "string", "minLength": 1, "maxLength": 80 }
+        }
+      }
+    },
+    "motion": {
+      "type": "object",
+      "required": ["supportsReducedMotion"],
+      "properties": { "supportsReducedMotion": { "type": "boolean" } }
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "semanticVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?$" },
+    "relativePath": { "type": "string", "minLength": 1, "maxLength": 512, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*//)[^\\\\]+$" }
+  }
+}

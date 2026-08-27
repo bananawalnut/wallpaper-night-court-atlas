@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "replace-with-wallpaper-id",
+  "version": "0.1.0",
+  "releasedAt": "2026-01-01T00:00:00Z",
+  "title": "Replace with wallpaper title",
+  "summary": "Replace with a concise catalogue description.",
+  "entry": "index.html",
+  "featured": false,
+  "sourceRepository": "https://github.com/ZenithResearch/replace-with-repository",
+  "runtime": {
+    "api": "zenith-wallpaper-host",
+    "minimumVersion": "2.0.0",
+    "maximumExclusiveVersion": "3.0.0"
+  },
+  "requirements": {
+    "webgl2": false,
+    "wasm": false,
+    "minimumMacOS": "13.0.0"
+  },
+  "actions": [],
+  "motion": { "supportsReducedMotion": true }
+}
+

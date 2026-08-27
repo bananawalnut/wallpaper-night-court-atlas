@@ -1,0 +1,29 @@
+name: Build publisher bundle
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  bundle:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm run release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wallpaper-publisher-bundle
+          path: |
+            dist/publication.json
+            dist/pack.zip
+            dist/preview.*
+            dist/release-summary.json
+          if-no-files-found: error
+
