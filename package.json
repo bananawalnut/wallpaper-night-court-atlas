@@ -1,6 +1,6 @@
 {
-  "name": "@zenith-research/wallpaper-template",
-  "version": "0.1.0",
+  "name": "@zenith-research/wallpaper-night-court-atlas",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,4 +9,3 @@
     "release": "npm run build && npm run verify"
   }
 }
-

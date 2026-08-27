@@ -4,12 +4,132 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#050719" />
-    <title>Zenith Wallpaper</title>
-    <link rel="stylesheet" href="./style.css" />
+    <title>Night Court · Illustrated World</title>
+    <link rel="preload" as="image" type="image/avif" href="./assets/starward-loggia-1920.avif" imagesrcset="./assets/starward-loggia-1920.avif 1920w, ./assets/starward-loggia-3840.avif 3840w" imagesizes="100vw" />
+    <link rel="stylesheet" href="./style.css?v=study03" />
   </head>
   <body>
-    <main id="wallpaper" aria-label="Wallpaper canvas"></main>
-    <script type="module" src="./main.js"></script>
+    <main id="atlas">
+      <div id="scene-stack" class="scene-stack">
+        <section class="scene active loggia" data-scene="loggia" aria-label="Starward Loggia">
+          <picture class="art-layer plate" data-depth="0.05">
+            <source type="image/avif" srcset="./assets/starward-loggia-1920.avif 1920w, ./assets/starward-loggia-3840.avif 3840w" sizes="100vw" />
+            <img src="./assets/starward-loggia-1920.avif" alt="" />
+          </picture>
+          <picture class="art-layer sky" data-depth="0.16">
+            <source type="image/avif" srcset="./assets/starward-loggia-1920.avif 1920w, ./assets/starward-loggia-3840.avif 3840w" sizes="100vw" />
+            <img src="./assets/starward-loggia-1920.avif" alt="" />
+          </picture>
+          <canvas class="depth-fx fx-sky" data-depth="0.23" aria-hidden="true"></canvas>
+          <picture class="art-layer mountains" data-depth="0.34">
+            <source type="image/avif" srcset="./assets/starward-loggia-1920.avif 1920w, ./assets/starward-loggia-3840.avif 3840w" sizes="100vw" />
+            <img src="./assets/starward-loggia-1920.avif" alt="" />
+          </picture>
+          <picture class="art-layer city-far" data-depth="0.55">
+            <source type="image/avif" srcset="./assets/starward-loggia-1920.avif 1920w, ./assets/starward-loggia-3840.avif 3840w" sizes="100vw" />
+            <img src="./assets/starward-loggia-1920.avif" alt="" />
+          </picture>
+          <picture class="art-layer river" data-depth="0.78">
+            <source type="image/avif" srcset="./assets/starward-loggia-1920.avif 1920w, ./assets/starward-loggia-3840.avif 3840w" sizes="100vw" />
+            <img src="./assets/starward-loggia-1920.avif" alt="" />
+          </picture>
+          <picture class="art-layer city-near" data-depth="1.02">
+            <source type="image/avif" srcset="./assets/starward-loggia-1920.avif 1920w, ./assets/starward-loggia-3840.avif 3840w" sizes="100vw" />
+            <img src="./assets/starward-loggia-1920.avif" alt="" />
+          </picture>
+          <canvas class="depth-fx fx-world" data-depth="1.12" aria-hidden="true"></canvas>
+          <picture class="art-layer frame" data-depth="1.42">
+            <source type="image/avif" srcset="./assets/starward-loggia-1920.avif 1920w, ./assets/starward-loggia-3840.avif 3840w" sizes="100vw" />
+            <img src="./assets/starward-loggia-1920.avif" alt="The Starward Loggia overlooking Velaris" />
+          </picture>
+          <button class="hotspot river-hotspot" data-target="riverfront" type="button">
+            <span class="hotspot-ring"></span>
+            <span class="hotspot-label">Descend to the Sidra</span>
+          </button>
+        </section>
+
+        <section class="scene riverfront" data-scene="riverfront" aria-label="Sidra Riverfront">
+          <picture class="art-layer plate" data-depth="0.05">
+            <source type="image/avif" data-srcset="./assets/sidra-riverfront.avif" />
+            <img data-src="./assets/sidra-riverfront.avif" alt="" />
+          </picture>
+          <picture class="art-layer sky" data-depth="0.15">
+            <source type="image/avif" data-srcset="./assets/sidra-riverfront.avif" />
+            <img data-src="./assets/sidra-riverfront.avif" alt="" />
+          </picture>
+          <canvas class="depth-fx fx-sky" data-depth="0.22" aria-hidden="true"></canvas>
+          <picture class="art-layer horizon" data-depth="0.32">
+            <source type="image/avif" data-srcset="./assets/sidra-riverfront.avif" />
+            <img data-src="./assets/sidra-riverfront.avif" alt="" />
+          </picture>
+          <picture class="art-layer city-far" data-depth="0.52">
+            <source type="image/avif" data-srcset="./assets/sidra-riverfront.avif" />
+            <img data-src="./assets/sidra-riverfront.avif" alt="" />
+          </picture>
+          <picture class="art-layer water" data-depth="0.76">
+            <source type="image/avif" data-srcset="./assets/sidra-riverfront.avif" />
+            <img data-src="./assets/sidra-riverfront.avif" alt="" />
+          </picture>
+          <picture class="art-layer city-near" data-depth="1.0">
+            <source type="image/avif" data-srcset="./assets/sidra-riverfront.avif" />
+            <img data-src="./assets/sidra-riverfront.avif" alt="" />
+          </picture>
+          <canvas class="depth-fx fx-world" data-depth="1.1" aria-hidden="true"></canvas>
+          <picture class="art-layer foreground-left" data-depth="1.32">
+            <source type="image/avif" data-srcset="./assets/sidra-riverfront.avif" />
+            <img data-src="./assets/sidra-riverfront.avif" alt="" />
+          </picture>
+          <picture class="art-layer foreground-right" data-depth="1.42">
+            <source type="image/avif" data-srcset="./assets/sidra-riverfront.avif" />
+            <img data-src="./assets/sidra-riverfront.avif" alt="The Sidra riverfront beneath the House of Wind" />
+          </picture>
+          <button class="hotspot house-hotspot" data-target="loggia" type="button">
+            <span class="hotspot-ring"></span>
+            <span class="hotspot-label">Return to the high window</span>
+          </button>
+        </section>
+      </div>
+
+      <canvas id="atmosphere" aria-hidden="true"></canvas>
+      <div class="paper-grain" aria-hidden="true"></div>
+      <div id="transition" class="transition" aria-hidden="true"></div>
+
+      <header class="atlas-header">
+        <div>
+          <span class="eyebrow">Night Court · Illustrated atlas · Study 03</span>
+          <h1 id="place-name" aria-live="polite">Starward Loggia</h1>
+        </div>
+        <nav aria-label="Wallpaper controls">
+          <button id="motion-toggle" type="button" aria-pressed="false">Stillness</button>
+        </nav>
+      </header>
+
+      <aside class="scene-note">
+        <span id="place-index">01 / 02</span>
+        <p id="place-description">A high concealed observatory where distant places can be drawn into symbolic alignment.</p>
+      </aside>
+
+      <footer class="atlas-footer">
+        <p>Move gently through the image. Choose a lit landmark to travel.</p>
+        <div class="route" aria-label="Current route">
+          <button class="route-node active" data-target="loggia" type="button"><i></i>Loggia</button>
+          <span></span>
+          <button class="route-node" data-target="riverfront" type="button"><i></i>Sidra</button>
+        </div>
+      </footer>
+
+      <section id="opening" class="opening">
+        <div>
+          <span class="eyebrow">An ImageGen + Rust/WASM experiment</span>
+          <h2>A world made from<br />painted distance.</h2>
+          <p>
+            This route preserves the finished illustration and creates movement through layered
+            light, atmosphere and chosen viewpoints—not reconstructed geometry.
+          </p>
+          <button id="begin" type="button">Enter the illustrated world <span>→</span></button>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./main.js?v=1.0.0"></script>
   </body>
 </html>
-

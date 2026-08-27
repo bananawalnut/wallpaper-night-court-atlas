@@ -1,52 +1,22 @@
-# Zenith wallpaper producer template
+# Night Court Illustrated Atlas
 
-Private template for self-contained wallpapers consumed by the `blank-canvas` macOS renderer.
-Every wallpaper lives in its own repository and produces the same publisher bundle without receiving
-the registry signing key.
+A layered 2D wallpaper for the `blank-canvas` macOS renderer. It travels between two authored
+painted viewpoints—the Starward Loggia and the Sidra Riverfront—using restrained parallax,
+river shimmer, window light, and Starfall animation.
 
-## Start a wallpaper
+This private producer was created from [`ZenithResearch/wallpaper-template`](https://github.com/ZenithResearch/wallpaper-template)
+and follows the shared v1 publication contract. Wallpaper source and generated publisher artifacts
+remain independent from both the renderer and registry repositories.
 
-1. Create a private repository from this GitHub template.
-2. Replace the values in `publication.json` and keep the v1 contract shape.
-3. Put the wallpaper entry point and every runtime asset under `src/`.
-4. Add exactly one catalogue image named `assets/preview.avif`, `preview.webp`, or `preview.png`.
-5. Implement `window.wallpaperHost`, dispatch `wallpaper-host-ready`, and post the native `ready` message.
-6. Run `npm run release`.
+Run:
 
-The release command creates:
-
-- `dist/publication.json`
-- `dist/pack.zip`
-- `dist/preview.*`
-- `dist/release-summary.json`
-
-The ZIP is deterministic: file order and timestamps are normalized before archiving. The verifier checks
-publication metadata, archive paths, the entry point, declared WASM requirements, hashes, byte counts,
-and exact agreement between source metadata and the publisher bundle.
-
-Upload the three publisher inputs through the authenticated control plane at
-`https://zenith-research.ca/admin/wallpapers`. Release versions are immutable; increment
-`publication.json.version` for every publication.
-
-## Host bridge
-
-```js
-window.wallpaperHost = {
-  apiVersion: "1.0",
-  applyPreferences({ reducedMotion, stillness }) {},
-  performAction(actionID) {},
-  setVisible(isVisible) {},
-  dispose() {},
-};
-
-document.dispatchEvent(new Event("wallpaper-host-ready"));
-window.webkit?.messageHandlers?.zenithRuntime?.postMessage({
-  type: "ready",
-  apiVersion: "1.0",
-  capabilities: [],
-});
+```sh
+npm run release
 ```
 
-Keep wallpaper source, compiled runtime assets, previews, and generated releases in this repository.
-Do not commit them to the renderer or registry repository.
+The command creates `dist/publication.json`, `dist/pack.zip`, `dist/preview.avif`, and
+`dist/release-summary.json`. Upload the first three through the authenticated publisher at
+`https://zenith-research.ca/admin/wallpapers`.
 
+The native action surface exposes Loggia, Sidra, arrival replay, and stillness. Reduced-motion
+preferences disable establishing movement, parallax, flicker, and Starfall.

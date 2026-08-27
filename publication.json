@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "id": "replace-with-wallpaper-id",
-  "version": "0.1.0",
-  "releasedAt": "2026-01-01T00:00:00Z",
-  "title": "Replace with wallpaper title",
-  "summary": "Replace with a concise catalogue description.",
+  "id": "night-court-illustrated-atlas",
+  "version": "1.0.0",
+  "releasedAt": "2026-08-27T00:10:00Z",
+  "title": "Night Court Illustrated Atlas",
+  "summary": "A layered painted journey between the Starward Loggia and the silver banks of the Sidra.",
   "entry": "index.html",
   "featured": false,
-  "sourceRepository": "https://github.com/ZenithResearch/replace-with-repository",
+  "sourceRepository": "https://github.com/ZenithResearch/wallpaper-night-court-atlas",
   "runtime": {
     "api": "zenith-wallpaper-host",
     "minimumVersion": "2.0.0",
@@ -15,10 +15,14 @@
   },
   "requirements": {
     "webgl2": false,
-    "wasm": false,
+    "wasm": true,
     "minimumMacOS": "13.0.0"
   },
-  "actions": [],
+  "actions": [
+    { "id": "show-loggia", "title": "Loggia", "symbol": "mountain.2" },
+    { "id": "show-sidra", "title": "Sidra", "symbol": "water.waves" },
+    { "id": "replay-arrival", "title": "Replay", "symbol": "arrow.counterclockwise" },
+    { "id": "toggle-stillness", "title": "Stillness", "symbol": "pause.circle" }
+  ],
   "motion": { "supportsReducedMotion": true }
 }
-
