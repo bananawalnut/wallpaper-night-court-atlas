@@ -1,10 +1,10 @@
-const HOST_API_VERSION = "1.0.0";
+const HOST_API_VERSION = "1.1.0";
 
 function createBrowserBridge() {
   const target = new EventTarget();
   const bridge = {
     apiVersion: HOST_API_VERSION,
-    capabilities: Object.freeze(["events"]),
+    capabilities: Object.freeze(["events", "notification-feeds"]),
     addEventListener(type, listener, options) {
       target.addEventListener(type, listener, options);
     },
@@ -28,7 +28,7 @@ function createBrowserBridge() {
       })));
     },
     async requestNotification() {
-      return { status: "unavailable", reason: "native-host-required" };
+      return { status: "unavailable", reason: "publish-to-declared-feed" };
     },
   };
   return Object.freeze(bridge);
@@ -45,4 +45,3 @@ if (!globalThis.zenithWallpaper) {
     value: zenithWallpaper,
   });
 }
-

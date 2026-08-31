@@ -25,4 +25,6 @@ For programmatic publishing, manually run the `Build publisher bundle` workflow 
 `staging` or `production`. GitHub OIDC provides a short-lived repository identity; this repo stores
 no Supabase password, registry signing key, or long-lived publisher token.
 
-The atlas imports `src/zenith-wallpaper.js` and connects its actions, motion preference, and visibility lifecycle to the standard Blank Canvas host event interface. Notification requests remain optional and user-controlled by the renderer.
+The atlas imports `src/zenith-wallpaper.js` and connects its actions, motion preference, and visibility lifecycle to the standard Blank Canvas host event interface.
+
+Wallpaper updates are independent of the runtime. Edit `notifications.json`, then run `npm run publish:notifications:staging` or `npm run publish:notifications:production`. The repository identity may write only the Illustrated Atlas feed. Blank Canvas reads that endpoint only when its **Pull wallpaper updates** setting is enabled; no macOS notification permission is requested.

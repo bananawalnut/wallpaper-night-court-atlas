@@ -1,6 +1,6 @@
 {
   "name": "@zenith-research/wallpaper-night-court-atlas",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,6 +8,8 @@
     "verify": "node scripts/verify.mjs",
     "release": "npm run build && npm run verify",
     "publish:staging": "node scripts/publish.mjs --channel staging",
-    "publish:production": "node scripts/publish.mjs --channel production"
+    "publish:production": "node scripts/publish.mjs --channel production",
+    "publish:notifications:staging": "node scripts/publish-notifications.mjs --channel staging",
+    "publish:notifications:production": "node scripts/publish-notifications.mjs --channel production"
   }
 }

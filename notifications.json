@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "wallpaperID": "night-court-illustrated-atlas",
+  "generatedAt": "2026-08-31T09:27:58Z",
+  "items": [
+    {
+      "id": "feed-support-1.0.2",
+      "publishedAt": "2026-08-31T09:27:58Z",
+      "title": "Wallpaper update feed connected",
+      "body": "Blank Canvas can now pull developer-published Illustrated Atlas updates from Zenith's read-only feed.",
+      "url": "https://zenith-research.ca/wallpapers"
+    }
+  ]
+}

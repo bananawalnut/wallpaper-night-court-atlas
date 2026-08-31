@@ -11,6 +11,33 @@ const summary = JSON.parse(await readFile(path.join(root, "dist", "release-summa
 const semver = /^[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?$/;
 const slug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const relativePath = /^(?!\/)(?!.*(?:^|\/)\.\.(?:\/|$))(?!.*\/\/)[^\\]+$/;
+const notificationID = /^[A-Za-z0-9_.:-]+$/;
+
+function verifyNotifications(publication, feed) {
+  const config = publication.notifications;
+  if (!config || config.format !== "zenith-json-v1") throw new Error("publication.json must declare its Zenith notification feed");
+  const feedURL = new URL(config.feedURL);
+  if (feedURL.protocol !== "https:" || feedURL.pathname !== `/wallpapers/v1/notifications/${publication.id}.json`) {
+    throw new Error("notification feedURL must use the canonical Zenith endpoint for this wallpaper");
+  }
+  if (!Number.isInteger(config.pollIntervalMinutes) || config.pollIntervalMinutes < 15 || config.pollIntervalMinutes > 1440) {
+    throw new Error("notification poll interval must be between 15 and 1440 minutes");
+  }
+  if (feed.schemaVersion !== 1 || feed.wallpaperID !== publication.id || Number.isNaN(Date.parse(feed.generatedAt))
+    || !Array.isArray(feed.items) || feed.items.length > 100) {
+    throw new Error("notifications.json has an invalid envelope");
+  }
+  const seen = new Set();
+  for (const item of feed.items) {
+    if (!notificationID.test(item?.id ?? "") || seen.has(item.id) || Number.isNaN(Date.parse(item?.publishedAt))
+      || typeof item?.title !== "string" || !item.title || item.title.length > 120
+      || typeof item?.body !== "string" || item.body.length > 500) {
+      throw new Error("notifications.json contains an invalid or duplicate item");
+    }
+    seen.add(item.id);
+    if (item.url !== undefined && new URL(item.url).protocol !== "https:") throw new Error("notification links must use HTTPS");
+  }
+}
 
 if (sourcePublication.schemaVersion !== 1 || !slug.test(sourcePublication.id ?? "") || !semver.test(sourcePublication.version ?? "")) {
   throw new Error("publication.json has an invalid schema version, id, or version");
@@ -31,6 +58,7 @@ if (sourcePublication.runtime?.api !== "zenith-wallpaper-host"
 if (!sourcePublication.sourceRepository?.startsWith("https://github.com/ZenithResearch/")) {
   throw new Error("sourceRepository must be an HTTPS ZenithResearch repository");
 }
+verifyNotifications(sourcePublication, JSON.parse(await readFile(path.join(root, "notifications.json"), "utf8")));
 if (JSON.stringify(sourcePublication) !== JSON.stringify(builtPublication)) throw new Error("dist/publication.json is stale");
 
 const archivePath = path.join(root, "dist", "pack.zip");
@@ -53,4 +81,3 @@ if (summary.id !== sourcePublication.id || summary.version !== sourcePublication
 if (!/^preview\.(?:avif|webp|png)$/i.test(summary.preview)) throw new Error("release summary has no valid preview");
 await readFile(path.join(root, "dist", summary.preview));
 console.log(`Verified ${sourcePublication.id}@${sourcePublication.version} (${archive.byteLength} bytes, ${hash})`);
-

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "id": "night-court-illustrated-atlas",
-  "version": "1.0.1",
-  "releasedAt": "2026-08-31T07:39:11Z",
+  "version": "1.0.2",
+  "releasedAt": "2026-08-31T09:27:58Z",
   "title": "Night Court Illustrated Atlas",
   "summary": "A layered painted journey between the Starward Loggia and the silver banks of the Sidra.",
   "entry": "index.html",
@@ -24,5 +24,10 @@
     { "id": "replay-arrival", "title": "Replay", "symbol": "arrow.counterclockwise" },
     { "id": "toggle-stillness", "title": "Stillness", "symbol": "pause.circle" }
   ],
-  "motion": { "supportsReducedMotion": true }
+  "motion": { "supportsReducedMotion": true },
+  "notifications": {
+    "feedURL": "https://zenith-research.ca/wallpapers/v1/notifications/night-court-illustrated-atlas.json",
+    "format": "zenith-json-v1",
+    "pollIntervalMinutes": 15
+  }
 }

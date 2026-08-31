@@ -1,0 +1,29 @@
+name: Publish wallpaper updates
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_channel:
+        description: Zenith feed channel
+        required: true
+        default: staging
+        type: choice
+        options:
+          - staging
+          - production
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/publish-notifications.mjs --channel "${{ inputs.publish_channel }}"
+        env:
+          ZENITH_PUBLISH_ORIGIN: https://zenith-research.ca
