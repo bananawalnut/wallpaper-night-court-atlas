@@ -1,4 +1,5 @@
 import init, { ParallaxWorld } from "./pkg/night_court_proto.js?v=1.0.0";
+import { zenithWallpaper } from "./zenith-wallpaper.js";
 
 const SCENES = {
   loggia: {
@@ -524,10 +525,12 @@ const wallpaperHost = {
 };
 
 globalThis.wallpaperHost = wallpaperHost;
+zenithWallpaper.addEventListener("preferences-change", ({ detail }) => wallpaperHost.applyPreferences(detail));
+zenithWallpaper.addEventListener("action", ({ detail }) => wallpaperHost.performAction(detail.id));
+zenithWallpaper.addEventListener("visibility-change", ({ detail }) => wallpaperHost.setVisible(detail.visible));
 boot().then(() => {
   document.dispatchEvent(new Event("wallpaper-host-ready"));
-  window.webkit?.messageHandlers?.zenithRuntime?.postMessage({
-    type: "ready",
+  zenithWallpaper.ready({
     apiVersion: wallpaperHost.apiVersion,
     capabilities: ["wasm", "canvas2d"],
   });

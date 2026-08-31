@@ -24,3 +24,5 @@ preferences disable establishing movement, parallax, flicker, and Starfall.
 For programmatic publishing, manually run the `Build publisher bundle` workflow and choose
 `staging` or `production`. GitHub OIDC provides a short-lived repository identity; this repo stores
 no Supabase password, registry signing key, or long-lived publisher token.
+
+The atlas imports `src/zenith-wallpaper.js` and connects its actions, motion preference, and visibility lifecycle to the standard Blank Canvas host event interface. Notification requests remain optional and user-controlled by the renderer.
